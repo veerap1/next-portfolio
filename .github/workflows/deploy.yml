@@ -1,28 +1,33 @@
-name: vercel deploy using git actions
+name: "Deploy CI"
+
 on:
-  push:
-    branches: [ dev, main ]
+ release:
+   types:
+     - published
+ push:
+   branches:
+     - dev
+ workflow_dispatch:
+
 jobs:
-  vercel: 
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: dev-deploy-vercel
-        if: ${{ github.ref == 'refs/heads/dev' }}
-        uses: amondnet/vercel-action@v20
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
-          github-token: ${{ secrets.REPO_TOKEN }} #Optional 
-          vercel-args: '--prod' #Optional
-          vercel-org-id: ${{ secrets.ORG_ID}}  #Required
-          vercel-project-id: ${{ secrets.PROJECT_ID}} #Required
-          
-      - name: deploy-vercel
-        if: ${{ github.ref == 'refs/heads/main' }}
-        uses: amondnet/vercel-action@v20
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Required
-          github-token: ${{ secrets.REPO_TOKEN }} #Optional 
-          vercel-args: '--prod' #Optional
-          vercel-org-id: ${{ secrets.ORG_ID}}  #Required
-          vercel-project-id: ${{ secrets.PROJECT_ID}} #Required
+ vercel:
+   runs-on: ubuntu-latest
+   name: "Deploy application"
+
+   steps:
+     - uses: actions/checkout@v2
+     - uses: actions/setup-node@v1
+       with:
+         node-version: '14'
+         registry-url: https://registry.npmjs.org/
+
+     - name: "Deploy application"
+       run: |
+         prodRun=""
+         if [[ ${GITHUB_REF} == "refs/heads/dev" ]]; then
+           prodRun="--prod"
+         fi
+
+         npx vercel --token ${VERCEL_TOKEN} $prodRun
+       env:
+         VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
