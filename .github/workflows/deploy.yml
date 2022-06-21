@@ -21,13 +21,10 @@ jobs:
          node-version: '14'
          registry-url: https://registry.npmjs.org/
 
-     - name: "Deploy application"
-       run: |
-         prodRun=""
-         if [[ ${GITHUB_REF} == "refs/heads/dev" ]]; then
-           prodRun="--prod"
-         fi
-
-         npx vercel --token ${VERCEL_TOKEN} $prodRun
-       env:
+     - name: Deploy to Vercel Action
+       uses: BetaHuhn/deploy-to-vercel-action@latest
+       with:
+         GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+         VERCEL_ORG_ID: ${{ secrets.ORG_ID }}
+         VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID }}
