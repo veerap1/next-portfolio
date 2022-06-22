@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          npm ci
+          npm install
           npx vercel pull --yes --token=${VERCEL_TOKEN}
         working-directory: ./
         env:
