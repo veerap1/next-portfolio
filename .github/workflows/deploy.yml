@@ -49,7 +49,7 @@ jobs:
         env:
           REF: ${{ github.ref }}
       - run: |
-          npx vercel build --prod
+          yarn build --prod
         if: github.event_name == 'push'
         working-directory: ./
         env:
