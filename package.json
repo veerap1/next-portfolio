@@ -3,7 +3,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "next",
-    "build": "node ./scripts/gen-rss.js && next build",
+    "now-build": "next build"
+    "builds": [{ "src": "package.json", "use": "@now/next" }]
     "start": "next start"
   },
   "dependencies": {
