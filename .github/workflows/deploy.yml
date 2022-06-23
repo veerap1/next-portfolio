@@ -1,67 +1,42 @@
-name: example - next.js
+name: Deploy CI
 on:
   push:
-    branches:
-      - main
-      - dev
-  pull_request_target:
-
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
 jobs:
-  static:
+  deploy:
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
-      - uses: actions/checkout@v2
-      - run: |
-          npm install
-          npx vercel pull --yes --token=${VERCEL_TOKEN}
-        working-directory: ./
-        env:
-          VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID }}
-          VERCEL_ORG_ID: ${{ secrets.ORG_ID }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Deploy to Vercel Action
+        id: vercel-deploy
+        uses: BetaHuhn/deploy-to-vercel-action@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-      - run: |
-          npx vercel build
-        if: github.event_name == 'pull_request_target'
-        working-directory: ./
-        env:
+          VERCEL_ORG_ID: ${{ secrets.ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID }}
-          VERCEL_ORG_ID: ${{ secrets.ORG_ID }}
-      - uses: ./
-        id: now-deployment-staging
-        if: github.event_name == 'pull_request_target'
+          CREATE_COMMENT: false
+      - uses: phulsechinmay/rewritable-pr-comment@v0.3.0
+        if: ${{ steps.vercel-deploy.outputs.DEPLOYMENT_CREATED }}
         with:
-          github-token: ${{ secrets.REPO_TOKEN }}
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.ORG_ID }}
-          vercel-project-id: ${{ secrets.PROJECT_ID }}
-          vercel-args: --prebuilt
-          working-directory: ./
+          message: |
+            This pull request has been deployed to Vercel.
 
-      - name: production or not
-        id: prod_or_not
-        run: |
-          if [ "$REF" == 'refs/heads/main' ]
-          then
-              echo "::set-output name=vercel-args::--prod --prebuilt"
-          else
-              echo "::set-output name=vercel-args::--prebuilt"
-          fi
-        env:
-          REF: ${{ github.ref }}
-      - run: |
-          yarn build --prod
-        if: github.event_name == 'push'
-        working-directory: ./
-        env:
-          VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID}}
-          VERCEL_ORG_ID: ${{ secrets.ORG_ID }}
-      - uses: ./
-        id: now-deployment-production
-        if: github.event_name == 'push'
-        with:
-          github-token: ${{ secrets.REPO_TOKEN }}
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.ORG_ID }}
-          vercel-project-id: ${{ secrets.PROJECT_ID }}
-          vercel-args: ${{ steps.prod_or_not.outputs.vercel-args }}
-          working-directory: ./
+            <table>
+              <tr>
+                <td><strong>✅ Preview:</strong></td>
+                <td><a href='${{ steps.vercel-deploy.outputs.PREVIEW_URL }}'>${{ steps.vercel-deploy.outputs.PREVIEW_URL }}</a></td>
+              </tr>
+              <tr>
+                <td><strong>🔍 Inspect:</strong></td>
+                <td><a href='${ steps.vercel-deploy.outputs.DEPLOYMENT_INSPECTOR_URL }'>${ steps.vercel-deploy.outputs.DEPLOYMENT_INSPECTOR_URL }</a></td>
+              </tr>
+            </table>
+
+            [View Workflow Logs](${ LOG_URL })
+          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+          COMMENT_IDENTIFIER: 'vercel-deploy'
