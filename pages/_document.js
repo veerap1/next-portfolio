@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from 'next/document'
 
 export default function Document() {
   const meta = {
-    title: "Veera's Notes and Portfolio",
+    title: 'veera.devopssec',
     description: 'Notes, documents, links, and portfolio projects by Veera.',
     image: 'https://blog-32ea7.web.app/og-image.png'
   }
