@@ -25,6 +25,7 @@ body {
   font-variant: common-ligatures contextual;
   letter-spacing: -0.02em;
   background: linear-gradient(180deg, #faf6ef 0%, #f3eadf 100%);
+  color: #1f1d1a;
 }
 b,
 strong,
@@ -57,24 +58,57 @@ img.next-image {
   margin: 0;
 }
 
-.prose a {
-  color: #0074de;
-}
-
-.nav-line .nav-link {
-  color: #69778c;
-}
-
 .nextra-nav-container,
 .nextra-body-typesetting-article {
   background: transparent !important;
+}
+
+.nextra-nav-container nav,
+.nextra-nav-container .nav-line,
+.nextra-nav-container .nav-line a,
+.nextra-nav-container a {
+  color: #5c5448 !important;
+}
+
+.nextra-nav-container a:hover,
+.nav-line .nav-link:hover {
+  color: #1f1d1a !important;
 }
 
 .prose h1 {
   font-size: clamp(2.4rem, 5vw, 4rem);
 }
 
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose strong,
+.prose b,
+.prose blockquote,
+.prose ul,
+.prose ol,
+.prose li,
+.prose p,
+.prose a,
+.prose code {
+  color: #1f1d1a !important;
+}
+
 .prose p,
 .prose li {
   color: #4d4a45;
+}
+
+.prose a {
+  color: #a54f2f !important;
+}
+
+.prose a:hover {
+  color: #7e3f27 !important;
+}
+
+.prose ul li::marker,
+.prose ol li::marker {
+  color: #a54f2f;
 }
