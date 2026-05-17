@@ -8,8 +8,8 @@ This repo now uses a simple static site setup for Vercel.
 - `write.html` for the Firebase-powered editor
 - `styles.css` for styling
 - `firebase-site.js` for Firebase Auth and Firestore logic
-- `firebase-config.js` for Firebase project configuration
-- `firestore.rules` for Firestore access rules
+- `api/firebase-config.js` for serving Firebase web config from Vercel environment variables
+- `firestore.rules` template for Firestore access rules
 
 ## Deploy
 
@@ -19,5 +19,11 @@ Vercel can deploy this directly as a static site.
 
 Make sure these are set correctly:
 
-- `firebase-config.js`
-- `firestore.rules`
+- Vercel env vars:
+  - `FIREBASE_API_KEY`
+  - `FIREBASE_AUTH_DOMAIN`
+  - `FIREBASE_PROJECT_ID`
+  - `FIREBASE_STORAGE_BUCKET`
+  - `FIREBASE_MESSAGING_SENDER_ID`
+  - `FIREBASE_APP_ID`
+- `firestore.rules` in Firebase Console

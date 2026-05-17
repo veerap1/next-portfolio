@@ -4,6 +4,7 @@ service cloud.firestore {
   match /databases/{database}/documents {
     match /entries/{entryId} {
       allow read: if true;
+      // Replace the placeholder below in Firebase Console before publishing.
       allow create, update, delete: if request.auth != null
         && request.auth.token.email in [
           "REPLACE_WITH_ADMIN_EMAIL"

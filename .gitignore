@@ -34,3 +34,7 @@ yarn-error.log*
 .vercel
 
 public/feed.xml
+
+# local/private firebase config
+firebase-config.local.js
+public/firebase-config.local.js
