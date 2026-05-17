@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>veera.devopssec</title>
+    <meta
+        name="description"
+        content="A personal site for notes, documents, important links, and portfolio work."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Newsreader:opsz,wght@6..72,400;700&display=swap"
+        rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="page-shell">
+        <header class="hero">
+            <nav class="topbar">
+                <span class="brand">veera.devopssec</span>
+                <div class="nav-links">
+                    <a href="write.html">Write</a>
+                    <a href="#notes">Notes</a>
+                    <a href="#documents">Documents</a>
+                    <a href="#links">Links</a>
+                    <a href="#projects">Projects</a>
+                </div>
+            </nav>
+
+            <div class="hero-copy">
+                <p class="eyebrow">Personal knowledge space</p>
+                <h1>Notes, links, documents, and projects in one place.</h1>
+                <p class="intro">
+                    A simple personal site for publishing what you learn, what you build, and what
+                    you want to keep close.
+                </p>
+                <div class="hero-actions">
+                    <a class="button secondary" href="write.html">Open write page</a>
+                    <a class="button primary" href="#notes">Start with notes</a>
+                    <a class="button secondary" href="#projects">View portfolio</a>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="panel" id="notes">
+                <div class="section-heading">
+                    <p class="eyebrow">Notes</p>
+                    <h2>Short posts and learning logs</h2>
+                </div>
+                <div class="card-grid two-up" id="notes-list">
+                    <article class="card">
+                        <span class="tag">Tech</span>
+                        <h3>How I organize DevOps notes</h3>
+                        <p>Short, useful notes from labs, bug fixes, deployments, and daily learning.</p>
+                        <a href="#">Read note</a>
+                    </article>
+                    <article class="card">
+                        <span class="tag">Career</span>
+                        <h3>Interview prep checkpoints</h3>
+                        <p>A living checklist for projects, system design stories, and strong work examples.</p>
+                        <a href="#">Read note</a>
+                    </article>
+                </div>
+            </section>
+
+            <section class="panel" id="documents">
+                <div class="section-heading">
+                    <p class="eyebrow">Documents</p>
+                    <h2>Share longer writeups and important files</h2>
+                </div>
+                <div class="card-grid" id="documents-list">
+                    <article class="card">
+                        <span class="tag">Assessment</span>
+                        <h3>Cloud migration writeup</h3>
+                        <p>Use this section for reports, architecture documents, and PDFs you want to share.</p>
+                        <a href="#">Open document</a>
+                    </article>
+                    <article class="card">
+                        <span class="tag">Resume</span>
+                        <h3>Professional profile</h3>
+                        <p>Add your resume, case studies, and certifications with direct links.</p>
+                        <a href="#">Open profile</a>
+                    </article>
+                    <article class="card">
+                        <span class="tag">Guide</span>
+                        <h3>Reference handbook</h3>
+                        <p>Cheat sheets, SOPs, interview notes, and topic collections you update over time.</p>
+                        <a href="#">Open guide</a>
+                    </article>
+                </div>
+            </section>
+
+            <section class="panel" id="links">
+                <div class="section-heading">
+                    <p class="eyebrow">Important URLs</p>
+                    <h2>Your curated link collection</h2>
+                </div>
+                <div class="link-list" id="links-list">
+                    <a class="link-row" href="https://github.com/Veerap1" target="_blank" rel="noreferrer">
+                        <span>GitHub profile</span>
+                        <span>Code, repos, contributions</span>
+                    </a>
+                    <a class="link-row" href="https://vercel.com/" target="_blank" rel="noreferrer">
+                        <span>Vercel dashboard</span>
+                        <span>Deploy and manage your site</span>
+                    </a>
+                    <a class="link-row" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
+                        <span>LinkedIn</span>
+                        <span>Professional network and profile</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="panel accent-panel" id="projects">
+                <div class="section-heading">
+                    <p class="eyebrow">Portfolio</p>
+                    <h2>Show the work behind your growth</h2>
+                </div>
+                <div class="project-rail" id="projects-list">
+                    <article class="project-card">
+                        <p class="project-index">01</p>
+                        <h3>Infrastructure Project</h3>
+                        <p>Document a cloud, CI/CD, or automation project with the problem and result.</p>
+                    </article>
+                    <article class="project-card">
+                        <p class="project-index">02</p>
+                        <h3>Data or Analytics Project</h3>
+                        <p>Summarize the workflow, tools used, and what insight came from it.</p>
+                    </article>
+                    <article class="project-card">
+                        <p class="project-index">03</p>
+                        <h3>Learning Build</h3>
+                        <p>Small builds also matter when they show curiosity and clear technical thinking.</p>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script type="module" src="firebase-site.js"></script>
+</body>
+</html>

@@ -1,30 +1,23 @@
-# Veera Notes and Portfolio
+# veera.devopssec
 
-This is the initial version of a personal site built on Next.js and Nextra.
+This repo now uses a simple static site setup for Vercel.
 
-## What's included
+## Files
 
-- Homepage for notes, documents, links, and portfolio sections
-- Firebase-powered write page at `/write.html`
-- Google sign-in for admin access
-- Firestore-backed content storage
-
-## Run locally
-
-```bash
-yarn
-yarn dev
-```
-
-Then open `http://localhost:3000`.
-
-## Firebase setup
-
-Update these files with your project details when needed:
-
-- `public/firebase-config.js`
-- Firestore rules in your Firebase project
+- `index.html` for the homepage
+- `write.html` for the Firebase-powered editor
+- `styles.css` for styling
+- `firebase-site.js` for Firebase Auth and Firestore logic
+- `firebase-config.js` for Firebase project configuration
+- `firestore.rules` for Firestore access rules
 
 ## Deploy
 
-Push to GitHub and import the repository into Vercel.
+Vercel can deploy this directly as a static site.
+
+## Firebase
+
+Make sure these are set correctly:
+
+- `firebase-config.js`
+- `firestore.rules`
