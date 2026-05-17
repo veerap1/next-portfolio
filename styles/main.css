@@ -24,6 +24,7 @@ body {
   font-variation-settings: 'wght' 450;
   font-variant: common-ligatures contextual;
   letter-spacing: -0.02em;
+  background: linear-gradient(180deg, #faf6ef 0%, #f3eadf 100%);
 }
 b,
 strong,
@@ -62,4 +63,18 @@ img.next-image {
 
 .nav-line .nav-link {
   color: #69778c;
+}
+
+.nextra-nav-container,
+.nextra-body-typesetting-article {
+  background: transparent !important;
+}
+
+.prose h1 {
+  font-size: clamp(2.4rem, 5vw, 4rem);
+}
+
+.prose p,
+.prose li {
+  color: #4d4a45;
 }

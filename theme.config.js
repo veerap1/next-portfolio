@@ -3,7 +3,7 @@ const YEAR = new Date().getFullYear()
 export default {
   footer: (
     <small style={{ display: 'block', marginTop: '8rem' }}>
-      <time>{YEAR}</time> © Your Name.
+      <time>{YEAR}</time> © Naga Veera Pavan Kumar Cheruvugattu.
       <a href="/feed.xml">RSS</a>
       <style jsx>{`
         a {
@@ -17,5 +17,14 @@ export default {
         }
       `}</style>
     </small>
+  ),
+  head: (
+    <>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta
+        name="description"
+        content="Notes, documents, links, and portfolio projects by Veera."
+      />
+    </>
   )
 }
