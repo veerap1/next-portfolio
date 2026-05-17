@@ -84,10 +84,25 @@
                         ></textarea>
                     </label>
 
-                    <label>
+                    <label id="single-url-group">
                         URL
                         <input id="entry-url" name="url" type="url" placeholder="https://example.com" />
                     </label>
+
+                    <div class="multi-url-group" id="multi-url-group" hidden>
+                        <div class="multi-url-header">
+                            <span>URLs under this post</span>
+                            <button class="button secondary small-button" id="add-link-row" type="button">
+                                Add another URL
+                            </button>
+                        </div>
+                        <div class="url-rows" id="url-rows">
+                            <div class="url-row">
+                                <input class="link-label-input" type="text" placeholder="Link title" />
+                                <input class="link-url-input" type="url" placeholder="https://example.com" />
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="form-actions">
                         <button class="button primary" type="submit">Save entry</button>

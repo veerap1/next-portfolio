@@ -70,12 +70,70 @@ main { display: grid; gap: 24px; margin-top: 24px; }
 .saved-card { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; border: 1px solid var(--line); border-radius: 24px; padding: 20px; background: rgba(255, 255, 255, 0.66); }
 .saved-card h3 { margin: 6px 0 10px; }
 .saved-card p { line-height: 1.6; }
+.saved-card ul { margin: 12px 0 0; padding-left: 18px; color: var(--muted); }
+.saved-card li + li { margin-top: 8px; }
 .small-button { padding: 10px 14px; }
+.multi-url-group { display: grid; gap: 12px; }
+.multi-url-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+}
+.url-rows { display: grid; gap: 10px; }
+.url-row {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.9fr) minmax(0, 1.4fr) auto;
+    gap: 10px;
+    align-items: center;
+}
+.link-row-card {
+    display: grid;
+    gap: 10px;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 18px 20px;
+    background: rgba(255, 255, 255, 0.66);
+}
+.link-post-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+.link-items {
+    display: grid;
+    gap: 10px;
+}
+.link-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+}
+.link-item:first-child {
+    border-top: 0;
+    padding-top: 0;
+}
+.link-item a {
+    color: var(--forest);
+    font-weight: 700;
+}
 @media (max-width: 900px) {
     .card-grid, .card-grid.two-up, .project-rail { grid-template-columns: 1fr; }
     .link-row { flex-direction: column; }
     .link-row span:last-child { text-align: left; }
     .saved-card { flex-direction: column; }
+    .url-row,
+    .link-item {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .multi-url-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 @media (max-width: 640px) {
     .page-shell { width: min(100% - 20px, 1120px); margin: 10px auto 24px; }
