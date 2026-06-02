@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>veera.devopssec</title>
+    <title>Veera | DevOps & Cloud Security Portfolio</title>
     <meta
         name="description"
-        content="A personal site for notes, documents, important links, and portfolio work."
+        content="Veera's DevOps and cloud security portfolio: AWS, Linux, CI/CD, infrastructure automation, security notes, and hands-on learning projects."
     />
+    <meta property="og:title" content="Veera | DevOps & Cloud Security Portfolio" />
+    <meta property="og:description" content="Hands-on DevOps, AWS, Linux, CI/CD, infrastructure automation, and cloud security notes and projects." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://veera-devops-portfolio.vercel.app/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://veera-devops-portfolio.vercel.app/" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -22,30 +28,58 @@
             <nav class="topbar">
                 <span class="brand">veera.devopssec</span>
                 <div class="nav-links">
-                    <a href="write.html">Write</a>
+                    <a href="#about">About</a>
+                    <a href="#projects">Projects</a>
                     <a href="#notes">Notes</a>
                     <a href="#documents">Documents</a>
                     <a href="#links">Links</a>
-                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
                 </div>
             </nav>
 
             <div class="hero-copy">
-                <p class="eyebrow">Personal knowledge space</p>
-                <h1>Notes, links, documents, and projects in one place.</h1>
+                <p class="eyebrow">DevOps & Cloud Security</p>
+                <h1>Building reliable cloud systems with security in mind.</h1>
                 <p class="intro">
-                    A simple personal site for publishing what you learn, what you build, and what
-                    you want to keep close.
+                    I'm Veera, a DevOps and cloud security learner building hands-on projects around AWS,
+                    Linux, CI/CD, infrastructure automation, and secure deployment workflows.
                 </p>
                 <div class="hero-actions">
-                    <a class="button secondary" href="write.html">Open write page</a>
-                    <a class="button primary" href="#notes">Start with notes</a>
-                    <a class="button secondary" href="#projects">View portfolio</a>
+                    <a class="button primary" href="#projects">View projects</a>
+                    <a class="button secondary" href="https://github.com/Veerap1" target="_blank" rel="noreferrer">GitHub</a>
+                    <a class="button secondary" href="#contact">Contact me</a>
+                </div>
+                <div class="skill-strip" aria-label="Core skills">
+                    <span>AWS</span>
+                    <span>Linux</span>
+                    <span>CI/CD</span>
+                    <span>Docker</span>
+                    <span>Terraform</span>
+                    <span>Cloud Security</span>
                 </div>
             </div>
         </header>
 
         <main>
+            <section class="panel" id="about">
+                <div class="section-heading">
+                    <p class="eyebrow">About</p>
+                    <h2>Focused on practical DevOps growth</h2>
+                </div>
+                <div class="about-grid">
+                    <p>
+                        This portfolio collects the labs, notes, and resources I use while improving as a
+                        DevOps / Cloud Security engineer. I focus on turning concepts into repeatable workflows:
+                        provisioning, deployment, troubleshooting, documentation, and secure operations.
+                    </p>
+                    <ul class="highlight-list">
+                        <li>AWS fundamentals, IAM, and cloud security practice</li>
+                        <li>Linux operations, automation, and deployment workflows</li>
+                        <li>CI/CD, GitHub, Vercel, Firebase, and documentation habits</li>
+                    </ul>
+                </div>
+            </section>
+
             <section class="panel" id="notes">
                 <div class="section-heading">
                     <p class="eyebrow">Notes</p>
@@ -105,12 +139,12 @@
                         <span>Code, repos, contributions</span>
                     </a>
                     <a class="link-row" href="https://vercel.com/" target="_blank" rel="noreferrer">
-                        <span>Vercel dashboard</span>
-                        <span>Deploy and manage your site</span>
+                        <span>Vercel</span>
+                        <span>Deployments and hosting workflow</span>
                     </a>
                     <a class="link-row" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
                         <span>LinkedIn</span>
-                        <span>Professional network and profile</span>
+                        <span>Professional profile and contact</span>
                     </a>
                 </div>
             </section>
@@ -123,21 +157,35 @@
                 <div class="project-rail" id="projects-list">
                     <article class="project-card">
                         <p class="project-index">01</p>
-                        <h3>Infrastructure Project</h3>
-                        <p>Document a cloud, CI/CD, or automation project with the problem and result.</p>
+                        <h3>AWS IAM Learning Lab</h3>
+                        <p>Practiced IAM policy evaluation, allow/deny behavior, and permission debugging using hands-on browser labs.</p>
                     </article>
                     <article class="project-card">
                         <p class="project-index">02</p>
-                        <h3>Data or Analytics Project</h3>
-                        <p>Summarize the workflow, tools used, and what insight came from it.</p>
+                        <h3>DevOps Knowledge Hub</h3>
+                        <p>Built this Firebase-backed portfolio to publish notes, curated links, documents, and project updates from one place.</p>
                     </article>
                     <article class="project-card">
                         <p class="project-index">03</p>
-                        <h3>Learning Build</h3>
-                        <p>Small builds also matter when they show curiosity and clear technical thinking.</p>
+                        <h3>Architecture Diagram Toolkit</h3>
+                        <p>Explored D2 for turning plain-text infrastructure descriptions into readable cloud and system diagrams.</p>
                     </article>
                 </div>
             </section>
+            <section class="panel contact-panel" id="contact">
+                <div class="section-heading">
+                    <p class="eyebrow">Contact</p>
+                    <h2>Let's connect</h2>
+                </div>
+                <p class="intro contact-copy">
+                    Interested in DevOps, cloud, security, or learning projects? Start with my GitHub and LinkedIn profiles.
+                </p>
+                <div class="hero-actions">
+                    <a class="button primary" href="https://github.com/Veerap1" target="_blank" rel="noreferrer">GitHub profile</a>
+                    <a class="button secondary" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn profile</a>
+                </div>
+            </section>
+
         </main>
     </div>
     <script type="module" src="firebase-site.js"></script>

@@ -67,8 +67,12 @@ async function removeAllEntries() {
     const entries = await fetchEntries();
     await Promise.all(entries.map((entry) => removeEntry(entry.id)));
 }
-function entryHref(entry) { return entry.url ? escapeHtml(entry.url) : "#"; }
-function entryActionLabel(entry, fallback) { return entry.url ? fallback : "Saved in Firestore"; }
+function entryActionMarkup(entry, fallback, emptyLabel = "Saved resource") {
+    if (entry.url) {
+        return `<a href="${escapeHtml(entry.url)}" target="_blank" rel="noreferrer">${fallback}</a>`;
+    }
+    return `<span class="saved-label">${emptyLabel}</span>`;
+}
 function renderSetupNotice() {
     [document.getElementById("storage-notice"), document.getElementById("auth-status"), document.getElementById("form-status")].forEach((node) => {
         if (node) node.textContent = "Add your Firebase project keys in firebase-config.js to enable sign-in and saving.";
@@ -105,8 +109,8 @@ async function renderHomePage() {
             links: entries.filter((entry) => entry.type === "links"),
             projects: entries.filter((entry) => entry.type === "projects"),
         };
-        if (byType.notes.length > 0) notesList.innerHTML = byType.notes.map((entry) => `<article class="card"><span class="tag">${escapeHtml(entry.tag || "Note")}</span><h3>${escapeHtml(entry.title)}</h3><p>${escapeHtml(entry.description)}</p><a href="${entryHref(entry)}">${entryActionLabel(entry, "Open note")}</a></article>`).join("");
-        if (byType.documents.length > 0) documentsList.innerHTML = byType.documents.map((entry) => `<article class="card"><span class="tag">${escapeHtml(entry.tag || "Document")}</span><h3>${escapeHtml(entry.title)}</h3><p>${escapeHtml(entry.description)}</p><a href="${entryHref(entry)}">${entryActionLabel(entry, "Open document")}</a></article>`).join("");
+        if (byType.notes.length > 0) notesList.innerHTML = byType.notes.map((entry) => `<article class="card"><span class="tag">${escapeHtml(entry.tag || "Note")}</span><h3>${escapeHtml(entry.title)}</h3><p>${escapeHtml(entry.description)}</p>${entryActionMarkup(entry, "Open note", "Saved note")}</article>`).join("");
+        if (byType.documents.length > 0) documentsList.innerHTML = byType.documents.map((entry) => `<article class="card"><span class="tag">${escapeHtml(entry.tag || "Document")}</span><h3>${escapeHtml(entry.title)}</h3><p>${escapeHtml(entry.description)}</p>${entryActionMarkup(entry, "Open document", "Saved document")}</article>`).join("");
         if (byType.links.length > 0) {
             linksList.innerHTML = byType.links.map((entry) => {
                 const links = normalizeLinks(entry);
