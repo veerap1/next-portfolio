@@ -162,6 +162,7 @@ async function renderWritePage() {
     const multiUrlGroup = document.getElementById("multi-url-group");
     const addLinkRowButton = document.getElementById("add-link-row");
     const urlRows = document.getElementById("url-rows");
+    const typeHelper = document.getElementById("type-helper");
     if (!form || !savedList || !status || !authStatus || !storageNotice || !clearButton || !signInButton || !signOutButton || !entryType || !singleUrlGroup || !multiUrlGroup || !addLinkRowButton || !urlRows) return;
     if (!hasConfig) { renderSetupNotice(); setEditorEnabled(false); return; }
     storageNotice.textContent = "Firebase Auth + Cloud Firestore mode.";
@@ -183,10 +184,17 @@ async function renderWritePage() {
             urlRows.appendChild(row);
         }
     };
+    const typeHelp = {
+        notes: "Notes are best for short learning logs, commands, and troubleshooting writeups.",
+        documents: "Documents are best for resume links, longer writeups, certifications, and case studies.",
+        links: "Links are best for curated resources. Add a short title plus one or more useful URLs.",
+        projects: "Projects should explain the problem, tools used, workflow, and result in a recruiter-friendly way.",
+    };
     const toggleLinkMode = () => {
         const isLinks = entryType.value === "links";
         singleUrlGroup.hidden = isLinks;
         multiUrlGroup.hidden = !isLinks;
+        if (typeHelper) typeHelper.textContent = typeHelp[entryType.value] || typeHelp.notes;
         const singleUrlInput = document.getElementById("entry-url");
         const descriptionLabel = document.getElementById("entry-description");
         if (singleUrlInput) {
@@ -194,8 +202,8 @@ async function renderWritePage() {
         }
         if (descriptionLabel) {
             descriptionLabel.placeholder = isLinks
-                ? "Short description for this link post..."
-                : "Write a summary, note, or explanation...";
+                ? "Example: A short collection of AWS IAM, CI/CD, or Linux resources and why they are useful."
+                : "Explain what you built or learned, the tools used, and the outcome.";
         }
         if (isLinks) {
             ensureBaseUrlRow();
@@ -284,7 +292,7 @@ async function renderWritePage() {
     onAuthStateChanged(auth, async (user) => {
         currentUser = user;
         if (!user) {
-            authStatus.textContent = "Sign in with your Google account to manage content.";
+            authStatus.textContent = "Sign in with your Google account to unlock the editor.";
             signInButton.hidden = false;
             signOutButton.hidden = true;
             setEditorEnabled(false);
@@ -292,7 +300,7 @@ async function renderWritePage() {
             return;
         }
         if (canAttemptWrite(user)) {
-            authStatus.textContent = `Signed in as ${user.email}. Save access still depends on your Firestore rules.`;
+            authStatus.textContent = `Signed in as ${user.email}. Editor unlocked.`;
             setEditorEnabled(true);
         }
         signInButton.hidden = true;
