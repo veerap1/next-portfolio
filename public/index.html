@@ -17,37 +17,40 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Newsreader:opsz,wght@6..72,400;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Orbitron:wght@500;700;800&display=swap"
         rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+    <div class="orbital-sun" aria-hidden="true"></div>
+    <div class="hud-noise" aria-hidden="true"></div>
     <div class="page-shell">
         <header class="hero">
             <nav class="topbar">
                 <span class="brand">veera.devopssec</span>
                 <div class="nav-links">
-                    <a href="#about">About</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#notes">Notes</a>
-                    <a href="#documents">Documents</a>
-                    <a href="#links">Links</a>
-                    <a href="#contact">Contact</a>
+                    <a class="hud-tab" href="#about" data-panel="about">About</a>
+                    <a class="hud-tab" href="#projects" data-panel="projects">Projects</a>
+                    <a class="hud-tab" href="#notes" data-panel="notes">Notes</a>
+                    <a class="hud-tab" href="#documents" data-panel="documents">Documents</a>
+                    <a class="hud-tab" href="#links" data-panel="links">Links</a>
+                    <a class="hud-tab" href="#contact" data-panel="contact">Contact</a>
                 </div>
             </nav>
 
             <div class="hero-copy">
-                <p class="eyebrow">DevOps & Cloud Security</p>
-                <h1>Building reliable cloud systems with security in mind.</h1>
+                <p class="eyebrow">J.A.R.V.I.S // DevOps Command Deck</p>
+                <h1>Building secure cloud systems from a cinematic ops console.</h1>
                 <p class="intro">
                     I'm Veera, a DevOps and cloud security learner building hands-on projects around AWS,
-                    Linux, CI/CD, infrastructure automation, and secure deployment workflows.
+                    Linux, CI/CD, infrastructure automation, and secure deployment workflows — presented like
+                    a black-box mission interface with orange solar telemetry.
                 </p>
                 <div class="hero-actions">
-                    <a class="button primary" href="#projects">View projects</a>
+                    <a class="button primary hud-tab" href="#projects" data-panel="projects">Open project feed</a>
                     <a class="button secondary" href="https://github.com/Veerap1" target="_blank" rel="noreferrer">GitHub</a>
-                    <a class="button secondary" href="#contact">Contact me</a>
+                    <a class="button secondary hud-tab" href="#contact" data-panel="contact">Contact uplink</a>
                 </div>
                 <div class="skill-strip" aria-label="Core skills">
                     <span>AWS</span>
@@ -58,6 +61,12 @@
                     <span>Cloud Security</span>
                 </div>
             </div>
+            <aside class="pip-display" aria-label="System status preview">
+                <div class="pip-header"><span></span><strong>OPS_FEED.PIP</strong></div>
+                <p>Mode: secure deployment</p>
+                <p>Signal: AWS / Linux / CI-CD</p>
+                <p>Visual: black + solar orange</p>
+            </aside>
         </header>
 
         <main>
@@ -188,6 +197,59 @@
 
         </main>
     </div>
+    <div class="hud-modal" id="hud-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="hud-modal-title">
+        <div class="hud-modal-backdrop" data-close-modal></div>
+        <section class="hud-modal-card">
+            <div class="pip-header modal-head"><span></span><strong>PICTURE-IN-PICTURE TAB</strong></div>
+            <button class="modal-close" type="button" data-close-modal aria-label="Close popup">×</button>
+            <p class="eyebrow" id="hud-modal-kicker">System panel</p>
+            <h2 id="hud-modal-title">Panel title</h2>
+            <p id="hud-modal-copy" class="intro"></p>
+            <a id="hud-modal-link" class="button primary" href="#about">Jump to section</a>
+        </section>
+    </div>
+    <script>
+        const panelData = {
+            about: { title: "About Veera", copy: "Practical DevOps growth: AWS, Linux, automation, deployment troubleshooting, and secure operations.", link: "#about" },
+            projects: { title: "Project Feed", copy: "Hands-on builds, cloud labs, IAM practice, deployment workflows, and portfolio systems built for recruiter visibility.", link: "#projects" },
+            notes: { title: "Learning Logs", copy: "Short technical notes from labs, bug fixes, commands, interviews, and daily DevOps learning.", link: "#notes" },
+            documents: { title: "Document Vault", copy: "Longer writeups, profile material, cloud reports, guides, certifications, and reference handbooks.", link: "#documents" },
+            links: { title: "URL Index", copy: "Curated GitHub, deployment, learning, and professional links in one command-console list.", link: "#links" },
+            contact: { title: "Contact Uplink", copy: "Connect through GitHub or LinkedIn for DevOps, cloud, security, and learning-project conversations.", link: "#contact" },
+        };
+        const modal = document.getElementById("hud-modal");
+        const title = document.getElementById("hud-modal-title");
+        const kicker = document.getElementById("hud-modal-kicker");
+        const copy = document.getElementById("hud-modal-copy");
+        const link = document.getElementById("hud-modal-link");
+        document.querySelectorAll(".hud-tab").forEach((tab) => {
+            tab.addEventListener("click", (event) => {
+                const data = panelData[tab.dataset.panel];
+                if (!data || !modal) return;
+                event.preventDefault();
+                kicker.textContent = `SYS.${tab.dataset.panel}.preview`;
+                title.textContent = data.title;
+                copy.textContent = data.copy;
+                link.href = data.link;
+                modal.setAttribute("aria-hidden", "false");
+                modal.classList.add("is-open");
+            });
+        });
+        document.querySelectorAll("[data-close-modal]").forEach((button) => button.addEventListener("click", () => {
+            modal?.classList.remove("is-open");
+            modal?.setAttribute("aria-hidden", "true");
+        }));
+        link?.addEventListener("click", () => {
+            modal?.classList.remove("is-open");
+            modal?.setAttribute("aria-hidden", "true");
+        });
+        window.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                modal?.classList.remove("is-open");
+                modal?.setAttribute("aria-hidden", "true");
+            }
+        });
+    </script>
     <script type="module" src="firebase-site.js"></script>
 </body>
 </html>
