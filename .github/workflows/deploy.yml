@@ -1,42 +1,71 @@
-name: Deploy CI
+name: Deploy to Vercel
+
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
-    types: [opened, synchronize, reopened]
+    types:
+      - opened
+      - synchronize
+      - reopened
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     if: "!contains(github.event.head_commit.message, '[skip ci]')"
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Deploy to Vercel Action
-        id: vercel-deploy
-        uses: BetaHuhn/deploy-to-vercel-action@v1
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          node-version: 20
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel Environment
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            vercel pull --yes --environment=preview \
+              --token=${{ secrets.VERCEL_TOKEN }}
+          else
+            vercel pull --yes --environment=production \
+              --token=${{ secrets.VERCEL_TOKEN }}
+          fi
+        env:
           VERCEL_ORG_ID: ${{ secrets.ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID }}
-          CREATE_COMMENT: false
-      - uses: phulsechinmay/rewritable-pr-comment@v0.3.0
-        if: ${{ steps.vercel-deploy.outputs.DEPLOYMENT_CREATED }}
+
+      - name: Build Project
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy to Vercel
+        id: deploy
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            URL=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})
+          else
+            URL=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }})
+          fi
+
+          echo "deployment_url=$URL" >> $GITHUB_OUTPUT
+        env:
+          VERCEL_ORG_ID: ${{ secrets.ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID }}
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request'
+        uses: peter-evans/create-or-update-comment@v4
         with:
-          message: |
-            This pull request has been deployed to Vercel.
+          token: ${{ secrets.REPO_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            🚀 Preview deployment is ready!
 
-            <table>
-              <tr>
-                <td><strong>✅ Preview:</strong></td>
-                <td><a href='${{ steps.vercel-deploy.outputs.PREVIEW_URL }}'>${{ steps.vercel-deploy.outputs.PREVIEW_URL }}</a></td>
-              </tr>
-              <tr>
-                <td><strong>🔍 Inspect:</strong></td>
-                <td><a href='${ steps.vercel-deploy.outputs.DEPLOYMENT_INSPECTOR_URL }'>${ steps.vercel-deploy.outputs.DEPLOYMENT_INSPECTOR_URL }</a></td>
-              </tr>
-            </table>
-
-            [View Workflow Logs](${ LOG_URL })
-          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
-          COMMENT_IDENTIFIER: 'vercel-deploy'
+            **Preview URL**
+            ${{ steps.deploy.outputs.deployment_url }}
