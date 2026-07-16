@@ -1,9 +1,9 @@
 :root {
-    --bg: #000000;
-    --surface: #000000;
+    --bg: #05070b;
+    --surface: rgba(255, 255, 255, 0.02);
     --ink: #ffffff;
-    --muted: #b3b3b3;
-    --line: rgba(255, 255, 255, 0.12);
+    --muted: #b8c0cc;
+    --line: rgba(255, 255, 255, 0.08);
     --accent: #ffffff;
 }
 
@@ -19,7 +19,24 @@ body {
     margin: 0;
     font-family: "Space Grotesk", sans-serif;
     color: var(--ink);
-    background: var(--bg);
+    background:
+        radial-gradient(circle at top left, rgba(120, 130, 150, 0.14), transparent 30%),
+        radial-gradient(circle at 85% 18%, rgba(90, 100, 120, 0.12), transparent 22%),
+        linear-gradient(180deg, #0c1118 0%, #06080c 45%, #030405 100%);
+    background-attachment: fixed;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 26%);
+    background-size: 40px 40px, 40px 40px, 100% 100%;
+    opacity: 0.28;
 }
 
 a {
@@ -27,6 +44,8 @@ a {
 }
 
 .page-shell {
+    position: relative;
+    z-index: 1;
     width: min(1040px, calc(100% - 24px));
     margin: 12px auto 28px;
 }
@@ -40,9 +59,9 @@ a {
 .saved-card,
 .link-row-card {
     border: 0;
-    background: transparent;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.028), rgba(255, 255, 255, 0.012));
     box-shadow: none;
-    backdrop-filter: none;
+    backdrop-filter: blur(10px);
 }
 
 .hero {
