@@ -17,16 +17,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Orbitron:wght@500;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,700&display=swap"
         rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
     <div class="page-shell">
-        <header class="hero">
+        <header class="hero" id="top">
             <nav class="topbar">
-                <span class="brand">veera.devopssec</span>
+                <a class="brand" href="#top">Veera</a>
                 <div class="nav-links">
                     <a href="#about">About</a>
                     <a href="#projects">Projects</a>
@@ -37,102 +37,204 @@
                 </div>
             </nav>
 
-            <div class="hero-copy">
-                <p class="eyebrow">Personal knowledge space</p>
-                <h1>Notes, links, documents, and projects in one place.</h1>
-                <p class="intro">
-                    A simple personal site for publishing what you learn, what you build, and what
-                    you want to keep close.
-                </p>
-                <div class="hero-actions">
-                    <a class="button primary" href="#projects">Open project feed</a>
-                    <a class="button secondary" href="https://github.com/Veerap1" target="_blank" rel="noreferrer">GitHub</a>
-                    <a class="button secondary" href="#contact">Contact</a>
+            <div class="hero-grid">
+                <div class="hero-copy">
+                    <p class="eyebrow">DevOps portfolio · notes · blog</p>
+                    <h1>Building a premium home for cloud, automation, and security work.</h1>
+                    <p class="intro">
+                        I’m Veera — documenting hands-on DevOps learning across AWS, Linux, CI/CD,
+                        infrastructure automation, and cloud security, with a clean portfolio and blog that
+                        highlights both execution and thinking.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="button primary" href="#projects">View projects</a>
+                        <a class="button secondary" href="#notes">Read notes</a>
+                        <a class="button tertiary" href="https://github.com/Veerap1" target="_blank" rel="noreferrer">GitHub</a>
+                    </div>
+                    <div class="hero-meta" aria-label="Highlights">
+                        <div class="meta-chip">
+                            <span class="meta-label">Focus</span>
+                            <strong>AWS · Linux · CI/CD</strong>
+                        </div>
+                        <div class="meta-chip">
+                            <span class="meta-label">Style</span>
+                            <strong>Portfolio + technical writing</strong>
+                        </div>
+                        <div class="meta-chip">
+                            <span class="meta-label">Goal</span>
+                            <strong>Show practical growth</strong>
+                        </div>
+                    </div>
                 </div>
+
+                <aside class="hero-spotlight" aria-label="Featured highlights">
+                    <p class="spotlight-label">Featured</p>
+                    <h2>What this site is for</h2>
+                    <p>
+                        A single place to publish learning logs, project breakdowns, resource collections,
+                        and documents that show how I approach real infrastructure work.
+                    </p>
+                    <ul class="spotlight-list">
+                        <li>Project summaries with clear tooling and outcomes</li>
+                        <li>Blog-style notes from labs, debugging, and deployment work</li>
+                        <li>Documents, links, and references worth keeping reusable</li>
+                    </ul>
+                </aside>
             </div>
         </header>
 
         <main>
-            <section class="panel" id="about">
-                <div class="section-heading">
-                    <p class="eyebrow">About</p>
-                    <h2>Focused on practical DevOps growth</h2>
-                </div>
-                <div class="about-grid">
-                    <p>
-                        This portfolio collects the labs, notes, and resources I use while improving as a
-                        DevOps / Cloud Security engineer. I focus on turning concepts into repeatable workflows:
-                        provisioning, deployment, troubleshooting, documentation, and secure operations.
+            <section class="panel about-panel" id="about">
+                <div class="section-heading split-heading">
+                    <div>
+                        <p class="eyebrow">About</p>
+                        <h2>Focused on practical DevOps growth</h2>
+                    </div>
+                    <p class="section-note">
+                        I care about making cloud and platform work understandable: what was built, how it was deployed,
+                        and what was learned from it.
                     </p>
-                    <ul class="highlight-list">
-                        <li>AWS fundamentals, IAM, and cloud security practice</li>
-                        <li>Linux operations, automation, and deployment workflows</li>
-                        <li>CI/CD, GitHub, Vercel, Firebase, and documentation habits</li>
-                    </ul>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-copy">
+                        <p>
+                            This portfolio combines project work with written thinking. Instead of only listing tools,
+                            it shows how I learn: by building labs, documenting workflows, debugging failures, and
+                            turning notes into repeatable knowledge.
+                        </p>
+                        <p>
+                            The goal is simple: make my progress visible in a way that feels credible to recruiters,
+                            useful to other learners, and easy for me to keep updating over time.
+                        </p>
+                    </div>
+                    <div class="stats-grid">
+                        <article class="stat-card">
+                            <span class="stat-value">AWS</span>
+                            <p>Cloud fundamentals, IAM, and security-focused labs.</p>
+                        </article>
+                        <article class="stat-card">
+                            <span class="stat-value">Linux</span>
+                            <p>Command line workflows, troubleshooting, and server habits.</p>
+                        </article>
+                        <article class="stat-card">
+                            <span class="stat-value">CI/CD</span>
+                            <p>Deployment pipelines, GitHub workflows, and automation practice.</p>
+                        </article>
+                        <article class="stat-card">
+                            <span class="stat-value">Docs</span>
+                            <p>Turning notes, postmortems, and guides into reusable assets.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel" id="projects">
+                <div class="section-heading split-heading">
+                    <div>
+                        <p class="eyebrow">Portfolio</p>
+                        <h2>Selected work and learning systems</h2>
+                    </div>
+                    <p class="section-note">A mix of hands-on labs, content systems, and portfolio projects that show applied learning.</p>
+                </div>
+                <div class="project-rail" id="projects-list">
+                    <article class="project-card featured-project">
+                        <p class="project-index">01</p>
+                        <h3>AWS IAM Learning Lab</h3>
+                        <p>
+                            Practiced IAM policy evaluation, permission debugging, and least-privilege thinking through
+                            guided labs and repeatable test cases.
+                        </p>
+                    </article>
+                    <article class="project-card">
+                        <p class="project-index">02</p>
+                        <h3>DevOps Knowledge Hub</h3>
+                        <p>
+                            Built this Firebase-backed portfolio to bring together notes, documents, projects, and curated
+                            resources in one publishable workspace.
+                        </p>
+                    </article>
+                    <article class="project-card">
+                        <p class="project-index">03</p>
+                        <h3>Architecture Diagram Toolkit</h3>
+                        <p>
+                            Explored plain-text infrastructure diagramming so cloud ideas can be explained clearly and
+                            turned into readable visuals faster.
+                        </p>
+                    </article>
                 </div>
             </section>
 
             <section class="panel" id="notes">
-                <div class="section-heading">
-                    <p class="eyebrow">Notes</p>
-                    <h2>Short posts and learning logs</h2>
+                <div class="section-heading split-heading">
+                    <div>
+                        <p class="eyebrow">Notes</p>
+                        <h2>Short posts, learning logs, and technical writing</h2>
+                    </div>
+                    <p class="section-note">The blog side of the site: concise lessons, workflows, and checkpoints worth revisiting.</p>
                 </div>
                 <div class="card-grid two-up" id="notes-list">
-                    <article class="card">
-                        <span class="tag">Tech</span>
+                    <article class="card note-card">
+                        <span class="tag">Tech note</span>
                         <h3>How I organize DevOps notes</h3>
-                        <p>Short, useful notes from labs, bug fixes, deployments, and daily learning.</p>
+                        <p>Short, useful notes from labs, bug fixes, deployments, and daily learning — structured so they stay easy to reuse.</p>
                         <a href="#">Read note</a>
                     </article>
-                    <article class="card">
+                    <article class="card note-card">
                         <span class="tag">Career</span>
                         <h3>Interview prep checkpoints</h3>
-                        <p>A living checklist for projects, system design stories, and strong work examples.</p>
+                        <p>A living checklist for projects, system stories, and examples that make technical experience easier to explain.</p>
                         <a href="#">Read note</a>
                     </article>
                 </div>
             </section>
 
             <section class="panel" id="documents">
-                <div class="section-heading">
-                    <p class="eyebrow">Documents</p>
-                    <h2>Share longer writeups and important files</h2>
+                <div class="section-heading split-heading">
+                    <div>
+                        <p class="eyebrow">Documents</p>
+                        <h2>Long-form writeups and professional materials</h2>
+                    </div>
+                    <p class="section-note">Useful assets that support the portfolio: reports, profiles, guides, and references.</p>
                 </div>
                 <div class="card-grid" id="documents-list">
                     <article class="card">
                         <span class="tag">Assessment</span>
                         <h3>Cloud migration writeup</h3>
-                        <p>Use this section for reports, architecture documents, and PDFs you want to share.</p>
+                        <p>Use this section for reports, architecture documents, and technical PDFs you want to share publicly.</p>
                         <a href="#">Open document</a>
                     </article>
                     <article class="card">
                         <span class="tag">Resume</span>
                         <h3>Professional profile</h3>
-                        <p>Add your resume, case studies, and certifications with direct links.</p>
+                        <p>Add your resume, case studies, certification links, and supporting material in a cleaner long-form format.</p>
                         <a href="#">Open profile</a>
                     </article>
                     <article class="card">
                         <span class="tag">Guide</span>
                         <h3>Reference handbook</h3>
-                        <p>Cheat sheets, SOPs, interview notes, and topic collections you update over time.</p>
+                        <p>Cheat sheets, SOPs, interview notes, and topic collections you want available from one stable place.</p>
                         <a href="#">Open guide</a>
                     </article>
                 </div>
             </section>
 
             <section class="panel" id="links">
-                <div class="section-heading">
-                    <p class="eyebrow">Important URLs</p>
-                    <h2>Your curated link collection</h2>
+                <div class="section-heading split-heading">
+                    <div>
+                        <p class="eyebrow">Links</p>
+                        <h2>Curated places to explore further</h2>
+                    </div>
+                    <p class="section-note">A lighter directory for the platforms and profiles that matter most.</p>
                 </div>
                 <div class="link-list" id="links-list">
                     <a class="link-row" href="https://github.com/Veerap1" target="_blank" rel="noreferrer">
                         <span>GitHub profile</span>
-                        <span>Code, repos, contributions</span>
+                        <span>Repos, experiments, and public work</span>
                     </a>
                     <a class="link-row" href="https://vercel.com/" target="_blank" rel="noreferrer">
                         <span>Vercel</span>
-                        <span>Deployments and hosting workflow</span>
+                        <span>Hosting and deployment workflow</span>
                     </a>
                     <a class="link-row" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
                         <span>LinkedIn</span>
@@ -141,43 +243,26 @@
                 </div>
             </section>
 
-            <section class="panel accent-panel" id="projects">
-                <div class="section-heading">
-                    <p class="eyebrow">Portfolio</p>
-                    <h2>Show the work behind your growth</h2>
-                </div>
-                <div class="project-rail" id="projects-list">
-                    <article class="project-card">
-                        <p class="project-index">01</p>
-                        <h3>AWS IAM Learning Lab</h3>
-                        <p>Practiced IAM policy evaluation, allow/deny behavior, and permission debugging using hands-on browser labs.</p>
-                    </article>
-                    <article class="project-card">
-                        <p class="project-index">02</p>
-                        <h3>DevOps Knowledge Hub</h3>
-                        <p>Built this Firebase-backed portfolio to publish notes, curated links, documents, and project updates from one place.</p>
-                    </article>
-                    <article class="project-card">
-                        <p class="project-index">03</p>
-                        <h3>Architecture Diagram Toolkit</h3>
-                        <p>Explored D2 for turning plain-text infrastructure descriptions into readable cloud and system diagrams.</p>
-                    </article>
-                </div>
-            </section>
             <section class="panel contact-panel" id="contact">
-                <div class="section-heading">
-                    <p class="eyebrow">Contact</p>
-                    <h2>Let's connect</h2>
+                <div class="section-heading split-heading">
+                    <div>
+                        <p class="eyebrow">Contact</p>
+                        <h2>Let’s connect</h2>
+                    </div>
+                    <p class="section-note">If you’re into DevOps, cloud infrastructure, security, or learning in public, I’d love to connect.</p>
                 </div>
-                <p class="intro contact-copy">
-                    Interested in DevOps, cloud, security, or learning projects? Start with my GitHub and LinkedIn profiles.
-                </p>
-                <div class="hero-actions">
-                    <a class="button primary" href="https://github.com/Veerap1" target="_blank" rel="noreferrer">GitHub profile</a>
-                    <a class="button secondary" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn profile</a>
+                <div class="contact-grid">
+                    <p class="intro contact-copy">
+                        This site is designed to keep growing with projects, notes, and technical writing.
+                        Reach out through GitHub or LinkedIn if you want to talk about cloud, automation,
+                        security, or portfolio-building.
+                    </p>
+                    <div class="hero-actions contact-actions">
+                        <a class="button primary" href="https://github.com/Veerap1" target="_blank" rel="noreferrer">GitHub profile</a>
+                        <a class="button secondary" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn profile</a>
+                    </div>
                 </div>
             </section>
-
         </main>
     </div>
     <script type="module" src="firebase-site.js"></script>
